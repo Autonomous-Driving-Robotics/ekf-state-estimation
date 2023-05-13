@@ -1,0 +1,25 @@
+{
+    "name": "ekf-slam",
+    "dockerFile": "../docker/Dockerfile",
+  
+    "customizations": {
+      "vscode": {
+        "settings": {
+          "terminal.integrated.defaultProfile.linux": "bash"
+        },
+  
+        "extensions": [
+          "dbaeumer.vscode-eslint",
+          "ms-azuretools.vscode-docker",
+          "donjayamanne.git-extension-pack",
+          "ms-vscode.cpptools-extension-pack",
+          "donjayamanne.python-extension-pack",
+          "josetr.cmake-language-support-vscode"
+        ]
+      }
+    },
+  
+    "forwardPorts": [3000],
+  
+    "remoteUser": "dev"
+  }

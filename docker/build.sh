@@ -1,0 +1,1 @@
+docker build -t adas:0.1 .

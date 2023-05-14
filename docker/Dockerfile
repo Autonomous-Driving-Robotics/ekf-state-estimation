@@ -28,4 +28,3 @@ RUN /bin/bash -c 'apt install -y ros-foxy-desktop python3-argcomplete ros-dev-to
 #-------------------------------------------------
 
 USER dev
-WORKDIR /home/dev/ros2_ws

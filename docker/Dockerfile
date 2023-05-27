@@ -27,4 +27,8 @@ RUN /bin/bash -c 'apt update && apt install -y locales; \
 RUN /bin/bash -c 'apt install -y ros-foxy-desktop python3-argcomplete ros-dev-tools ros-foxy-derived-object-msgs'
 #-------------------------------------------------
 
+# Install OpenCV
+RUN /bin/bash -c 'apt install -y libopencv-dev python3-opencv'
+#-------------------------------------------------
+
 USER dev

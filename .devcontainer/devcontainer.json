@@ -20,6 +20,10 @@
         ]
       }
     },
+
+    "mounts": [
+      "type=bind,source=/Users/${localEnv:USER}/.ssh,target=/home/dev/.ssh,readonly"
+    ],
   
     "forwardPorts": [3000],
   

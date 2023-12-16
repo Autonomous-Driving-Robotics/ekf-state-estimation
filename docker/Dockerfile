@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.7.0-cudnn8-runtime-ubuntu20.04
+FROM ubuntu:20.04
 
 
 # Install basic ubuntu and python packages
@@ -29,6 +29,12 @@ RUN /bin/bash -c 'apt install -y ros-foxy-desktop python3-argcomplete ros-dev-to
 
 # Install OpenCV
 RUN /bin/bash -c 'apt install -y libopencv-dev python3-opencv'
+#-------------------------------------------------
+
+# Prompt formatting
+RUN /bin/bash -c 'apt install -y vim'
+RUN echo "parse_git_branch() {\n git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\\\1)/' \n}" >> /home/dev/.bashrc
+RUN echo "export PS1=\"\[\e[34m\]\u@\[\e[34m\]\h \[\e[32m\]\w \[\e[91m\]\$(parse_git_branch)\[\e[00m\]$ \" " >> /home/dev/.bashrc
 #-------------------------------------------------
 
 USER dev

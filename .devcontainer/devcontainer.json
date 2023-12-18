@@ -9,14 +9,15 @@
         },
   
         "extensions": [
-          "dbaeumer.vscode-eslint",
-          "ms-azuretools.vscode-docker",
-          "donjayamanne.git-extension-pack",
-          "ms-vscode.cpptools-extension-pack",
-          "donjayamanne.python-extension-pack",
-          "josetr.cmake-language-support-vscode",
-          "parasoft.vscode-cpptest",
-          "ms-dotnettools.vscode-dotnet-runtime"
+            "dbaeumer.vscode-eslint",
+            "ms-azuretools.vscode-docker",
+            "donjayamanne.git-extension-pack",
+            "ms-vscode.cpptools-extension-pack",
+            "donjayamanne.python-extension-pack",
+            "josetr.cmake-language-support-vscode",
+            "parasoft.vscode-cpptest",
+            "ms-dotnettools.vscode-dotnet-runtime",
+            "ms-iot.vscode-ros"
         ]
       }
     },

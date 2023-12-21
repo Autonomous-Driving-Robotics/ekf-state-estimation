@@ -38,4 +38,7 @@ RUN echo "export PS1=\"\[\e[34m\]\u@\[\e[34m\]\h \[\e[32m\]\w \[\e[91m\]\$(parse
 RUN echo "source /opt/ros/foxy/setup.bash" >> /home/dev/.bashrc
 #-------------------------------------------------
 
+RUN /bin/bash -c 'apt install -y apt ros-foxy-plotjuggler-ros'
+
+
 USER dev

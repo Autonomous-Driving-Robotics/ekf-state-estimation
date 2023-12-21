@@ -19,14 +19,17 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(Eigen3 REQUIRED)
 
 add_executable(slam_node src/slam_node.cpp)
-ament_target_dependencies(slam_node rclcpp geometry_msgs)
+ament_target_dependencies(slam_node rclcpp geometry_msgs Eigen3)
 target_include_directories(slam_node PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
 
 install(TARGETS slam_node
   DESTINATION lib/${PROJECT_NAME})
+
+ament_export_dependencies(rclcpp geometry_msgs Eigen3)
 
 ament_package()

@@ -1,5 +1,6 @@
 #include <chrono>
 
+#include "ekf_filter.cpp"
 #include "geometry_msgs/msg/pose.hpp"
 #include "rclcpp/rclcpp.hpp"
 
@@ -29,7 +30,12 @@ class Slam : public rclcpp::Node
         geometry_msgs::msg::Pose slam_pose{};
         if (sensor_pose_valid)
         {
-            slam_pose = latest_sensor_pose_msg;
+            kalman_filter.SetMeasurement(latest_sensor_pose_msg.position.x,
+                                         latest_sensor_pose_msg.position.y);
+            kalman_filter.Predict();
+            kalman_filter.Update();
+            slam_pose.position.x = kalman_filter.GetStateEstimation()(0, 0);
+            slam_pose.position.y = kalman_filter.GetStateEstimation()(1, 0);
         }
         slam_publisher_->publish(slam_pose);
         sensor_pose_valid = false;
@@ -40,6 +46,7 @@ class Slam : public rclcpp::Node
     rclcpp::TimerBase::SharedPtr timer_;
     rclcpp::Publisher<geometry_msgs::msg::Pose>::SharedPtr slam_publisher_;
     rclcpp::Subscription<geometry_msgs::msg::Pose>::SharedPtr sensor_data_subscriber_;
+    ExtendedKalmanFilter kalman_filter{};
 };
 
 int main(int argc, char **argv)

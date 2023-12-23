@@ -12,13 +12,13 @@ class ExtendedKalmanFilter
     void Predict();
     void Update();
     void SetMeasurement(double x, double y);
+    void SetTransitionMatrixValues(double delta_t);
     MatrixXd GetStateEstimation()
     {
         return measurement;
     }
 
   private:
-    double delta_t{};
     MatrixXd state_vector{MatrixXd::Zero(6, 1)};  // x, y, vx, vy, ax, ay
     MatrixXd state_transition_matrix{MatrixXd::Identity(6, 6)};
     MatrixXd control_input{MatrixXd::Zero(6, 1)};  // 0, 0, 0, 0, ax, ay

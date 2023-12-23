@@ -1,3 +1,5 @@
+#include <time.h>
+
 #include <chrono>
 
 #include "ekf_filter.cpp"
@@ -32,6 +34,10 @@ class Slam : public rclcpp::Node
         {
             kalman_filter.SetMeasurement(latest_sensor_pose_msg.position.x,
                                          latest_sensor_pose_msg.position.y);
+            time_t current_timestamp{time(0)};
+            kalman_filter.SetTransitionMatrixValues(
+                difftime(current_timestamp, last_recorded_timestamp));
+            last_recorded_timestamp = current_timestamp;
             kalman_filter.Predict();
             kalman_filter.Update();
             slam_pose.position.x = kalman_filter.GetStateEstimation()(0, 0);
@@ -47,6 +53,7 @@ class Slam : public rclcpp::Node
     rclcpp::Publisher<geometry_msgs::msg::Pose>::SharedPtr slam_publisher_;
     rclcpp::Subscription<geometry_msgs::msg::Pose>::SharedPtr sensor_data_subscriber_;
     ExtendedKalmanFilter kalman_filter{};
+    time_t last_recorded_timestamp{time(0)};
 };
 
 int main(int argc, char **argv)

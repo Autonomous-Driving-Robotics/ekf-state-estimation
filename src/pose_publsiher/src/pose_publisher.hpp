@@ -22,11 +22,12 @@ class DataGenerator
         this->noise_y = std::normal_distribution<double>(this->mean_y, this->std_y);
     }
 
-    Position GetPosition(double delta)
+    Position GetPosition(double delta_t)
     {
-        this->pose.x += delta + this->noise_x(this->generator);
-        this->pose.y += delta + this->noise_y(this->generator);
-        return this->pose;
+        this->pose.x += vx * delta_t + 0.5 * ax * delta_t * delta_t + noise_x(generator);
+        vx += ax * delta_t;
+        double y{pose.y + noise_y(generator)};
+        return Position{this->pose.x, y};
     }
 
   private:
@@ -38,5 +39,10 @@ class DataGenerator
     double mean_y{};
     double std_x{};
     double std_y{};
+
+    double vx{0.0};
+    double vy{0.0};
+    double ax{0.1};
+    double ay{0.0};
 };
 }  // namespace pose_publisher

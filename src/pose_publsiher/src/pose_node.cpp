@@ -24,7 +24,7 @@ class SensorPosePublisher : public rclcpp::Node
         message.position.y = pose.y;
         publisher_->publish(message);
     }
-    pose_publisher::DataGenerator generator{0.1, 0.1, 0.01, 0.01};
+    pose_publisher::DataGenerator generator{0.0, 0.0, 0.01, 0.01};
     rclcpp::TimerBase::SharedPtr timer_;
     rclcpp::Publisher<geometry_msgs::msg::Pose>::SharedPtr publisher_;
     size_t count_;

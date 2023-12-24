@@ -17,7 +17,8 @@
             "josetr.cmake-language-support-vscode",
             "parasoft.vscode-cpptest",
             "ms-dotnettools.vscode-dotnet-runtime",
-            "ms-iot.vscode-ros"
+            "ms-iot.vscode-ros",
+            "ms-toolsai.jupyter"
         ]
       }
     },

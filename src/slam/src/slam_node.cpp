@@ -17,7 +17,7 @@ class Slam : public rclcpp::Node
         sensor_data_subscriber_ = this->create_subscription<geometry_msgs::msg::Pose>(
             "/sensor/pose", 10, std::bind(&Slam::sensor_pose_callback, this, _1));
         slam_publisher_ = this->create_publisher<geometry_msgs::msg::Pose>("/slam/pose", 10);
-        timer_ = this->create_wall_timer(500ms, std::bind(&Slam::slam_publisher_callback, this));
+        timer_ = this->create_wall_timer(50ms, std::bind(&Slam::slam_publisher_callback, this));
     }
 
   private:
